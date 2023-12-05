@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import httpx
+from typing import Annotated
 
 app = FastAPI()
 
@@ -13,13 +13,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"  # Replace with your OpenAI API key
+# OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"  # Replace with your OpenAI API key
 
 @app.post("/generate_blog")
-async def generate_blog(prompt: str):
+async def generate_blog(prompt: Annotated[str, Form()]):
     # DEBUG
     newPrompt = prompt + " > +1 magic ai dust"
-    return {"debug": newPrompt}
+    return {"blog_content": newPrompt}
 
     # async with httpx.AsyncClient() as client:
     #     response = await client.post(
