@@ -19,13 +19,16 @@ def generate_prompt(payload):
 
     # Construct the prompt string with clear formatting and explicit metadata
     prompt = (
-        f"### Blog Prompt\n\n"
+        f"### Writing Prompt\n\n"
+        f"Create a piece of writing that satisfies the following prompt:\n\n"
+        f"{prompt_text}\n"
+        f"### Writing Elements\n\n"
+        f"Use the below as a guide when writing the piece:\n\n"
         f"Tone: {tone}\n"
         f"Structure: {structure}\n"
         f"Style: {style}\n"
         f"Voice: {voice}\n"
         f"Purpose: {purpose}\n\n"
-        f"{prompt_text}\n"
     )
 
     return prompt
